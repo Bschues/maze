@@ -20,7 +20,7 @@ let personTop = 180;
 let personLeft = 0;
 let y = 9;
 let x = 0;
-
+console.log(x);
 const board = document.getElementById("board");
 for (let row of maze) {
     //console.log(row);
