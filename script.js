@@ -40,6 +40,7 @@ for (let row of maze) {
     }
 }
 
+
 document.addEventListener('keydown', (event) => {
     const keyName = event.key;
     switch (keyName) {
@@ -63,13 +64,16 @@ document.addEventListener('keydown', (event) => {
             break;
         case ("ArrowRight"):
             // console.log("ArrowRight");
-            if (maze[y][x + 1] === "F"){
+            if (maze[y][x + 1] === "F") {
                 x += 1;
                 personLeft = personLeft + 20;
                 document.getElementById("person").style.left = personLeft + "px";
-                // console.log(maze[y][x]);
+                let win = document.getElementById("win")
+                win.innerHTML = "You made it!";
+            // console.log(maze[y][x]);
                 // console.log("position x:" + x + " " + "postion y:" + y);
             }
+            
             if (maze[y][x + 1] === " ") {
                 x += 1;
                 personLeft = personLeft + 20;
