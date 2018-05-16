@@ -20,7 +20,8 @@ let personTop = 180;
 let personLeft = 0;
 let y = 9;
 let x = 0;
-console.log(x);
+let personPosition = maze[y][x];
+//console.log(maze[y - 1][x + 1]);
 const board = document.getElementById("board");
 for (let row of maze) {
     //console.log(row);
@@ -29,44 +30,64 @@ for (let row of maze) {
         cell.dataset.cellnumb = cells
         cell.classList.add("boardcells");
         board.appendChild(cell);
-        let cellposition = maze
+        //let cellposition = maze
         //console.log(cells);
         switch (cells) {
             case "W":
-            cell.classList.add("walls");
-            break;
+                cell.classList.add("walls");
+                break;
         }
     }
 }
 
 document.addEventListener('keydown', (event) => {
     const keyName = event.key;
-    if (keyName == "ArrowDown") {
-        // console.log("ArrowDown");
-        personTop = personTop + 20;
-        y = y - 1;
-        document.getElementById("person").style.top = personTop + "px";
-        console.log("position x:" + x + " " + "postion y:" + y);
-    };
-    if (keyName == "ArrowUp") {
-        // console.log("ArrowUp");
-        personTop = personTop - 20;
-        y = y + 1;
-        document.getElementById("person").style.top = personTop + "px";
-        console.log("position x:" + x + " " + "postion y:" + y);
-    };
-    if (keyName == "ArrowRight") {
-        // console.log("ArrowRight");
-        personLeft = personLeft + 20;
-        x = x + 1;
-        document.getElementById("person").style.left = personLeft + "px";
-        console.log("position x:" + x + " " + "postion y:" + y);
-    };
-    if (keyName == "ArrowLeft") {
-        // console.log("ArrowLeft");
-        personLeft = personLeft - 20;
-        x = x - 1;
-        document.getElementById("person").style.left = personLeft + "px";
-        console.log("postion x:" + x + " " + "postion y:" + y);
+    switch (keyName) {
+        case ("ArrowUp"):
+            if (maze[y - 1][x] === " ") {
+                y -= 1;
+                personTop = personTop - 20;
+                document.getElementById("person").style.top = personTop + "px";
+                // console.log(maze[y][x]);
+                // console.log("position x:" + x + " " + "postion y:" + y);
+            }
+            break;
+        case ("ArrowDown"):
+            if (maze[y + 1][x] === " ") {
+                y += 1;
+                personTop = personTop + 20;
+                document.getElementById("person").style.top = personTop + "px";
+                // console.log(maze[y][x]);
+                // console.log("position x:" + x + " " + "postion y:" + y);
+            }
+            break;
+        case ("ArrowRight"):
+            // console.log("ArrowRight");
+            if (maze[y][x + 1] === "F"){
+                x += 1;
+                personLeft = personLeft + 20;
+                document.getElementById("person").style.left = personLeft + "px";
+                // console.log(maze[y][x]);
+                // console.log("position x:" + x + " " + "postion y:" + y);
+            }
+            if (maze[y][x + 1] === " ") {
+                x += 1;
+                personLeft = personLeft + 20;
+                document.getElementById("person").style.left = personLeft + "px";
+                // console.log(maze[y][x]);
+                // console.log("position x:" + x + " " + "postion y:" + y);
+            }
+            break;
+
+        case ("ArrowLeft"):
+            if (maze[y][x - 1] === " ") {
+                //maze[y][x-1];
+                personLeft = personLeft - 20;
+                x -= 1;
+                document.getElementById("person").style.left = personLeft + "px";
+                // console.log(maze[y][x]);
+                // console.log("postion x:" + x + " " + "postion y:" + y);
+            }
+            break;
     };
 });
